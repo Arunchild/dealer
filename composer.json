@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Company\\": "src/"
+            "Dealer\\": "src/"
         }
     },
     "extra": {
