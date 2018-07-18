@@ -1,92 +1,92 @@
-@extends('company::layouts.app')
+@extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="text-center text-danger">Dealer Details</h1>
 
         <br/><h1 class="text-center text-warning">Want to create new one... <a class="btn btn-danger" href="{{ route('dealer.create') }}">Create dealer</a></h1><br/>
 
         <?php $i = 1; ?>
-        @foreach($items as $item)
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Heres a Details of Your dealer {{ $i }} &#160;&#160;&#160;&#160;
 
-                        <a href="{{ route('dealer.edit', $item->id) }}" class="btn btn-warning">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        {!! Form::open([ 'method' => 'DELETE', 'style' => 'display:inline', 'class' => 'form-inline', 'route' => ['dealer.destroy', $item->id] ]) !!}
-                        {!! Form::button('<i class="fas fa-trash-alt"></i>', array('type' => 'submit', 'class' => 'btn btn-danger')) !!}
-                        {!! Form::close() !!}
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover table-condensed table-bordered">
+
+                    <table id="dealer" class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th> #:</th>
+                                <th> Company Name:</th>
+                                <th> Address 1:</th>
+                                <th>Address 2: </th>
+                                <th> state:</th>
+                                <th> pincode:</th>
+                                <th> country:</th>
+                                <th> mobile:</th>
+                                <th> gst:</th>
+                                <th> email:</th>
+                                <th> website:</th>
+                                <th> contact_person:</th>
+                                <th> cpm:</th>
+                                <th> Opening Balance:</th>
+                                <th> Action</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                        <tr>
-                            <td> Company Name:</td>
-                            <td>{{ $item->companyname }}</td>
-                        </tr>
+                        @foreach($items as $item)
+                            <tr>
 
-                        <tr>
-                            <td> Address 1:</td>
-                            <td>{{ $item->addressline1 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Address 2: </td>
-                            <td> {{ $item->addressline2 }}</td>
-                        </tr>
+                                <td>{{ $i }}</td>
+                                <td>{{ $item->companyname }}</td>
 
-                        <tr>
-                            <td> state:</td>
-                            <td>{{ $item->state }}</td>
-                        </tr>
-                        <tr>
-                            <td> pincode:</td>
-                            <td>{{ $item->pincode }}</td>
-                        </tr>
-                        <tr>
-                            <td> country:</td>
-                            <td>{{ $item->country }}</td>
-                        </tr>
-                        <tr>
-                            <td> mobile:</td>
-                            <td>{{ $item->mobile }}</td>
-                        </tr>
-                        <tr>
-                            <td> gst:</td>
-                            <td>{{ $item->gst }}</td>
-                        </tr>
-                        <tr>
-                            <td> email:</td>
-                            <td>{{ $item->email }}</td>
-                        </tr>
-                        <tr>
-                            <td> website:</td>
-                            <td>{{ $item->website }}</td>
-                        </tr>
 
-                        <tr>
-                            <td> contact_person:</td>
-                            <td>{{ $item->contact_person }}</td>
-                        </tr>
+                                <td>{{ $item->addressline1 }}</td>
 
-                        <tr>
-                            <td> contact_person_mobile:</td>
-                            <td>{{ $item->contact_person_mobile }}</td>
-                        </tr>
+                                <td> {{ $item->addressline2 }}</td>
 
-                        <tr>
-                            <td> Opening Balance:</td>
-                            <td>{{ $item->opening_balance }}</td>
-                        </tr>
+
+                                <td>{{ $item->state }}</td>
+
+
+                                <td>{{ $item->pincode }}</td>
+
+                                <td>{{ $item->country }}</td>
+
+                                <td>{{ $item->mobile }}</td>
+
+                                <td>{{ $item->gst }}</td>
+
+                                <td>{{ $item->email }}</td>
+
+
+                                <td>{{ $item->website }}</td>
+
+
+                                <td>{{ $item->contact_person }}</td>
+
+
+                                <td>{{ $item->contact_person_mobile }}</td>
+
+
+                                <td>{{ $item->opening_balance }}</td>
+                                <td><a href="{{ route('dealer.edit', $item->id) }}" class="">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    {!! Form::open([ 'method' => 'DELETE', 'style' => 'display:inline', 'class' => 'form-inline', 'route' => ['dealer.destroy', $item->id] ]) !!}
+                                    {!! Form::button('<i class="fas fa-trash-alt"></i>', array('type' => 'submit', 'class' => '')) !!}
+                                    {!! Form::close() !!}</td>
+                            </tr>
+                            <?php $i++; ?>
+                        @endforeach
                         </tbody>
                     </table>
 
 
-                </div>
-            </div>
-            <?php $i++; ?>
-        @endforeach
+
+
     </div>
+    @section('script')
+        <script>
+            $(document).ready( function () {
+                $('#dealer').DataTable();
+            } );
+        </script>
+    @stop
 @stop

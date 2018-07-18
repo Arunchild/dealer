@@ -18,6 +18,7 @@ class DealerController extends Controller
      */
     public function index()
     {
+
         $items = Dealer::all();
         //$items = ['test'];
         return view('dealer::index', compact('items'));

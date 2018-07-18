@@ -1,11 +1,11 @@
-@extends('company::layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <p class="lead">Edit and Update this Company Details below, or <a href="{{ route('company.index') }}">Go back to all Company Details.</a></p>
     <hr>
 
-    @include('company::partials.alerts.errors')
+    @include('dealer::partials.alerts.errors')
 
 
     {!! Form::model($items, [
